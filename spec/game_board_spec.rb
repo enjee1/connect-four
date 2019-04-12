@@ -27,9 +27,18 @@ describe GameBoard do
 
   it "creates a map of the column letters to a number represntation" do
     column_hash = {
-      "A" => 0,
-      "B" => 1
+      0 => "A",
+      1 => "B",
+      2 => "C",
+      3 => "D",
+      4 => "E",
+      5 => "F",
+      6 => "G",
+      7 => "H",
+      8 => "I",
+      9 => "J"
     }
+
     expect(board.column_indexes).to eq(column_hash)
   end
 
