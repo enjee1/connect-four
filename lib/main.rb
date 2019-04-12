@@ -1,23 +1,26 @@
-# players
-#   - have a unique name
-#   - are assigned a game piece (either x or o)
-#   - provide a column selection to place their game piece
+# - make game board
+#   board = GameBoard.new()
 #
-# game board
-#   - a 10 x 10 grid
-#   - holds two kinds of game pieces (x, and o)
-#   - pieces are added to a column of the board and are placed at the
-#     bottom-most open space
-#   - pieces can stack on top of other pieces regardless of whose piece is in
-#     the bottom-most open space
+# - get player 1 info
+# - make a player object
+#   player_1 = Player.new(name, game_piece)
 #
-# board spaces
-#   - total of 100 spaces on a game board
-#   - can be empty, occupied by an x, or occupied by an o
+# - get player 2 info
+# - make a player object
+#   player_2 = Player.new(name, game_piece)
 #
-# round
-#   - the game is played until one of two conditions are met
-#     - game ends if the game board is full and results in a stalemate
-#     - game ends when the first player places 4 game pieces in a row
-#       horizontally or vertically
+# - check if player names are unique
+#   - display prompt if user name is not unique
+#   - proceed with game if names are unique
 #
+# - get player 1's column choice
+# - check if the column is open
+# - put the player 1 game piece in the column
+# - update the board
+#
+# - get player 2's column choice
+# - check if the column is open
+# - put the player 2 game piece in the column
+# - update the board
+#
+#   loop player choices until board is full or there is a winner

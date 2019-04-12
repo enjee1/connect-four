@@ -10,6 +10,8 @@ class GameBoard
       end
       @board << row
     end
+
+    @column_indexes = map_columns
   end
 
   def rows
@@ -29,13 +31,21 @@ class GameBoard
         end
       end
     end
-    game_screen + label_columns!
+    game_screen + label_columns
   end
 
-  def label_columns!
+  def label_columns
     column_letters = [" A ", " B ", " C ", " D ", " E ", " F ", " G ", " H ",
        " I ", " J "]
     column_names = column_letters.join("")
     column_names
+  end
+
+  def map_columns
+    columns = {}
+    column_letters.each_with_index do |index, letter|
+      columns << letter.gsub(/" "/, "") + index
+    end
+    columns
   end
 end
