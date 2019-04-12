@@ -1,5 +1,11 @@
+require_relative "game_turn"
+
 class GameBoard
+  attr_reader :column_indexes
+
   CONNECT_FOUR_ROW_SIZE = 10
+  COLUMN_LETTERS = ["A", "B", "C", "D", "E", "F", "G", "H",
+     "I", "J"]
 
   def initialize
     @board = []
@@ -10,6 +16,12 @@ class GameBoard
       end
       @board << row
     end
+
+    @column_indexes = map_columns
+  end
+
+  def add_turn
+
   end
 
   def rows
@@ -29,13 +41,23 @@ class GameBoard
         end
       end
     end
-    game_screen + label_columns!
+    game_screen + label_columns
   end
 
-  def label_columns!
-    column_letters = [" A ", " B ", " C ", " D ", " E ", " F ", " G ", " H ",
-       " I ", " J "]
-    column_names = column_letters.join("")
-    column_names
+  def map_columns
+    columns = {}
+    COLUMN_LETTERS.each_with_index do |letter, index|
+      columns[index] = letter
+    end
+    columns
   end
+end
+
+def label_columns
+  column_names = ""
+  COLUMN_LETTERS.each do |letter|
+    column_names += " #{letter} "
+  end
+
+  column_names
 end

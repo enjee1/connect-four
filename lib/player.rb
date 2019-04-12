@@ -1,7 +1,8 @@
 class Player
-  attr_reader :name
+  attr_reader :name, :piece
 
-  def initialize(name)
+  def initialize(name, piece)
     @name = name
+    @piece = piece
   end
 end
