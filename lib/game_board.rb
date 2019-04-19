@@ -22,23 +22,28 @@ class GameBoard
 
   def add_turn(player, col_choice)
     column_index = COLUMN_NAMES.find_index(col_choice.upcase)
-    @board[0][column_index].player = player
+    row_index = lowest_row(column_index)
+    @board[row_index][column_index].player = player
   end
 
-  def available_row
-
+  def lowest_row(column)
+    bottom_row_index = @board.size - 1
+    if @board[bottom_row_index][column].occupied?
+      bottom_row_index -= 1
+    end
+    bottom_row_index
   end
 
   def print
     board_print = ""
     @board.each do |row|
-      row.each_with_index do |spot, index|
+      row.each_with_index do |space, index|
         if index == 0
-          board_print += "|- "
+          board_print += "|#{space.to_char} "
         elsif index == row.size - 1
-          board_print += " -|\n"
+          board_print += " #{space.to_char}|\n"
         else
-          board_print += " - "
+          board_print += " #{space.to_char} "
         end
       end
     end
