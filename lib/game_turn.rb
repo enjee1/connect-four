@@ -1,9 +1,9 @@
 class GameTurn
-  attr_reader :board, :player, :col_index
+  attr_reader :board, :player, :col_choice
 
-  def initialize(board, player, col_index)
+  def initialize(board, player, col_choice)
     @board =  board
     @player = player
-    @col_index = col_index
+    @col_choice = col_choice
   end
 end
