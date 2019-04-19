@@ -6,43 +6,32 @@ describe GameBoard do
   let(:o_player) { Player.new("Sally", 'O') }
   let(:x_player) { Player.new("John", 'X') }
 
-  it "is a grid of 10 rows with 10 spaces in each row" do
-    expect(board.rows.size).to eq(10)
-    expect(board.rows[0].size).to eq(10)
+  describe "#initialize" do
+    it "is a grid of 10 rows with 10 spaces in each row" do
+      expect(board.rows.size).to eq(10)
+      expect(board.rows[0].size).to eq(10)
+    end
   end
 
-  it "fills the starting board with dashes and labels each column A - J" do
-    printed_game_board =
-    "|-  -  -  -  -  -  -  -  -  -|\n" +
-    "|-  -  -  -  -  -  -  -  -  -|\n" +
-    "|-  -  -  -  -  -  -  -  -  -|\n" +
-    "|-  -  -  -  -  -  -  -  -  -|\n" +
-    "|-  -  -  -  -  -  -  -  -  -|\n" +
-    "|-  -  -  -  -  -  -  -  -  -|\n" +
-    "|-  -  -  -  -  -  -  -  -  -|\n" +
-    "|-  -  -  -  -  -  -  -  -  -|\n" +
-    "|-  -  -  -  -  -  -  -  -  -|\n" +
-    "|-  -  -  -  -  -  -  -  -  -|\n" +
-    " A  B  C  D  E  F  G  H  I  J "
+  describe "#print" do
+    it "fills the starting board with dashes and labels each column A - J and
+      dispalys the empty board" do
 
-    expect(board.print).to eq(printed_game_board)
-  end
+      printed_game_board =
+      "|-  -  -  -  -  -  -  -  -  -|\n" +
+      "|-  -  -  -  -  -  -  -  -  -|\n" +
+      "|-  -  -  -  -  -  -  -  -  -|\n" +
+      "|-  -  -  -  -  -  -  -  -  -|\n" +
+      "|-  -  -  -  -  -  -  -  -  -|\n" +
+      "|-  -  -  -  -  -  -  -  -  -|\n" +
+      "|-  -  -  -  -  -  -  -  -  -|\n" +
+      "|-  -  -  -  -  -  -  -  -  -|\n" +
+      "|-  -  -  -  -  -  -  -  -  -|\n" +
+      "|-  -  -  -  -  -  -  -  -  -|\n" +
+      " A  B  C  D  E  F  G  H  I  J "
 
-  it "creates a map of the column letters to a number represntation" do
-    column_hash = {
-      0 => "A",
-      1 => "B",
-      2 => "C",
-      3 => "D",
-      4 => "E",
-      5 => "F",
-      6 => "G",
-      7 => "H",
-      8 => "I",
-      9 => "J"
-    }
-
-    expect(board.column_indexes).to eq(column_hash)
+      expect(board.print).to eq(printed_game_board)
+    end
   end
 
   it "has empty spaces when created" do
@@ -50,8 +39,8 @@ describe GameBoard do
   end
 
   it "has no empty spaces when completely occupied" do
-
-
+    board.add_turn(o_player, 'A')
+    board.add_turn(x_player, 'B')
     expect(board.empty_spaces?).to eq(false)
   end
 end
