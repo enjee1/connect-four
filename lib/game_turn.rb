@@ -1,13 +1,9 @@
-require_relative "game_board"
-
 class GameTurn
-  def initialize(player, board)
+  attr_reader :board, :player, :col_index
+
+  def initialize(board, player, col_index)
+    @board =  board
     @player = player
-    @board = board
+    @col_index = col_index
   end
-
-  def place_piece(column)
-
-  end
-
 end

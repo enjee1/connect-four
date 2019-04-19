@@ -1,7 +1,10 @@
 require "spec_helper"
 
 describe GameBoard do
-  let(:board) { GameBoard.new }
+
+  let(:board) { GameBoard.new}
+  let(:o_player) { Player.new("Sally", 'O') }
+  let(:x_player) { Player.new("John", 'X') }
 
   it "is a grid of 10 rows with 10 spaces in each row" do
     expect(board.rows.size).to eq(10)
@@ -22,7 +25,7 @@ describe GameBoard do
     "|-  -  -  -  -  -  -  -  -  -|\n" +
     " A  B  C  D  E  F  G  H  I  J "
 
-    expect(board.print_out).to eq(printed_game_board)
+    expect(board.print).to eq(printed_game_board)
   end
 
   it "creates a map of the column letters to a number represntation" do
@@ -42,4 +45,13 @@ describe GameBoard do
     expect(board.column_indexes).to eq(column_hash)
   end
 
+  it "has empty spaces when created" do
+    expect(board.empty_spaces?).to eq(true)
+  end
+
+  it "has no empty spaces when completely occupied" do
+
+
+    expect(board.empty_spaces?).to eq(false)
+  end
 end
