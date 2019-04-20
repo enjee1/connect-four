@@ -28,7 +28,7 @@ describe GameBoard do
       "|-  -  -  -  -  -  -  -  -  -|\n" +
       "|-  -  -  -  -  -  -  -  -  -|\n" +
       "|-  -  -  -  -  -  -  -  -  -|\n" +
-      " A  B  C  D  E  F  G  H  I  J "
+      " A  B  C  D  E  F  G  H  I  J " + "\n"
 
       expect(board.print).to eq(printed_game_board)
     end
@@ -49,7 +49,7 @@ describe GameBoard do
       board.add_turn(o_player, 'G')
       board.add_turn(x_player, 'H')
       board.add_turn(o_player, 'I')
-      board.add_turn(x_player, 'J')      
+      board.add_turn(x_player, 'J')
     end
 
     puts "\n" + board.print

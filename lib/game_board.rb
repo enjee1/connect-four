@@ -31,9 +31,13 @@ class GameBoard
         end
       end
     else
-      "This column is full! Choose another column."
+      # TODO: create an error message without using puts method
+      puts "\n"
+      puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+      puts "ERROR: This column is full! Choose another column."
+      puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+      puts "\n"
     end
-    binding.pry 
   end
 
   def column_full?(column)
@@ -56,7 +60,7 @@ class GameBoard
         end
       end
     end
-    board_print + format_column_names
+    board_print + format_column_names + "\n"
   end
 
   def format_column_names
