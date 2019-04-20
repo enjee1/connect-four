@@ -22,7 +22,25 @@ class GameBoard
 
   def add_turn(player, col_choice)
     column_index = COLUMN_NAMES.find_index(col_choice.upcase)
-    @board[9][column_index].player = player
+
+    if !column_full?(column_index)
+      @board.reverse.each do |row|
+        if row[column_index].to_char == "-"
+          row[column_index].player = player
+          break
+        end
+      end
+    else
+      "This column is full! Choose another column."
+    end
+    binding.pry 
+  end
+
+  def column_full?(column)
+    !@board.map { |row| row[column] }.any? { |space| space.to_char == "-"}
+    # columns = @board.map { |row| row[column] }
+    # result = !columns.any? { |space| space.to_char == "-"}
+    # result
   end
 
   def print

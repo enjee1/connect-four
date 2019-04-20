@@ -20,9 +20,20 @@ player_two = Player.new(name_two, "O")
 puts "Player 1 is named #{player_one.name} and is playing #{player_one.piece}s"
 puts "Player 2 is named #{player_two.name} and is playing #{player_two.piece}s"
 
-puts "Player 1, in which column would you like to place your game piece?"
-puts "Please specifiy a column letter: "
-print "> "
+
+while board.winner? == false
+  puts "Player 1, in which column would you like to place your game piece?"
+  puts "Please specifiy a column letter: "
+  print "> "
+  p1_choice = gets.chomp
+  board.add_turn(player_one, p1_choice)
+
+  puts "Player 2, in which column would you like to place your game piece?"
+  puts "Please specifiy a column letter: "
+  print "> "
+  p2_choice = gets.chomp
+  board.add_turn(player_one, p1_choice)
+end
 
 
 # - get player 1's column choice
