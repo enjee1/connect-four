@@ -40,7 +40,8 @@ describe GameBoard do
 
   it "has no empty spaces when completely occupied" do
     board.add_turn(o_player, 'A')
-    board.add_turn(x_player, 'B')
+    board.add_turn(x_player, 'B')    
+    puts board.print
     expect(board.empty_spaces?).to eq(false)
   end
 end
