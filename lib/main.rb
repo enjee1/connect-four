@@ -23,33 +23,13 @@ puts "\n"
 puts board.print
 puts "\n"
 
-while board.game_winner? == false
+
+while board.stop_play == false
   puts "Player 1, in which column would you like to place your game piece?"
-  puts "Please specifiy a column letter: "
+  puts "Please specifiy a column letter:"
   print "> "
   p1_choice = gets.chomp
   board.add_turn(player_one, p1_choice)
   puts board.print
   puts "\n"
-
-  puts "Player 2, in which column would you like to place your game piece?"
-  puts "Please specifiy a column letter: "
-  print "> "
-  p2_choice = gets.chomp
-  board.add_turn(player_two, p2_choice)
-  puts board.print
-  puts "\n"
 end
-
-
-# - get player 1's column choice
-# - check if the column is open
-# - put the player 1 game piece in the column
-# - update the board
-#
-# - get player 2's column choice
-# - check if the column is open
-# - put the player 2 game piece in the column
-# - update the board
-#
-#   loop player choices until board is full or there is a winner

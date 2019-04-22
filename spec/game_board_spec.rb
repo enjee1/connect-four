@@ -99,7 +99,6 @@ describe GameBoard do
         board.add_turn(x_player, 'J')
       end
 
-      puts "\n" + board.print
       expect(board.empty_spaces?).to eq(false)
     end
   end
@@ -116,10 +115,17 @@ describe GameBoard do
       board.add_turn(x_player, 'A')
       board.add_turn(o_player, 'F')
       board.add_turn(x_player, 'B')
-      board.add_turn(o_player, 'G')
+      board.add_turn(o_player, 'C')
+      board.add_turn(x_player, 'G')
+      board.add_turn(o_player, 'D')
+      board.add_turn(x_player, 'J')
+      board.add_turn(o_player, 'E')
+      board.add_turn(x_player, 'H')
+      board.add_turn(o_player, 'F')
       expect(board.winner_horizontal?(o_player)).to eq(true)
     end
-    it "returns false if there no player has four consecutive pieces in the
+
+    it "returns false if no player has four consecutive pieces in the
       a row" do
       board.add_turn(o_player, 'A')
       board.add_turn(x_player, 'B')
@@ -133,18 +139,43 @@ describe GameBoard do
       board.add_turn(x_player, 'J')
       expect(board.winner_horizontal?(o_player)).to eq(false)
       expect(board.winner_horizontal?(x_player)).to eq(false)
-      puts board.print
     end
   end
 
 
-  describe "#vertical_winner?" do
+  describe "#winner_vertical?" do
     it "returns true if there are four consecutive game pieces of the same
       player in a column" do
+      board.add_turn(o_player, 'A')
+      board.add_turn(x_player, 'B')
+      board.add_turn(o_player, 'A')
+      board.add_turn(x_player, 'B')
+      board.add_turn(o_player, 'A')
+      board.add_turn(x_player, 'B')
+      board.add_turn(o_player, 'A')
+      board.add_turn(x_player, 'B')
+      expect(board.winner_vertical?(o_player)).to eq(true)
     end
 
-    it "returns true if there are four consecutive game pieces of the same
-      player in a column" do
+    it "returns false if no player has four consecutive pieces in the
+      a column" do
+      board.add_turn(x_player, 'A')
+      board.add_turn(o_player, 'B')
+      board.add_turn(x_player, 'C')
+      board.add_turn(o_player, 'D')
+      board.add_turn(x_player, 'A')
+      board.add_turn(o_player, 'E')
+      board.add_turn(x_player, 'A')
+      board.add_turn(o_player, 'F')
+      board.add_turn(x_player, 'B')
+      board.add_turn(o_player, 'C')
+      board.add_turn(x_player, 'G')
+      board.add_turn(o_player, 'D')
+      board.add_turn(x_player, 'J')
+      board.add_turn(o_player, 'E')
+      board.add_turn(x_player, 'H')
+      board.add_turn(o_player, 'F')
+      expect(board.winner_vertical?(o_player)).to eq(false)      
     end
   end
 end

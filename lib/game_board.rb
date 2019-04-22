@@ -1,7 +1,7 @@
 require_relative "board_space"
 
 class GameBoard
-  attr_reader :board
+  attr_reader :board, :stop_play
 
   COLUMN_NAMES = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
 
@@ -14,6 +14,7 @@ class GameBoard
       end
       @board << row
     end
+    @stop_play = false
   end
 
   def rows
@@ -27,6 +28,7 @@ class GameBoard
       @board.reverse.each do |row|
         if row[col_index].to_char == "-"
           row[col_index].player = player
+          game_winner?(player)
           break
         end
       end
@@ -38,7 +40,6 @@ class GameBoard
       puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
       puts "\n"
     end
-    winner_horizontal?(player)
   end
 
   def column_full?(column)
@@ -84,14 +85,11 @@ class GameBoard
 
   def winner_horizontal?(player)
     victory = false
-    winning_sequence = ""
-    4.times do
-      winning_sequence += player.piece
-    end
 
     @board.reverse_each do |row|
       spaces_string = row.map { |space| space.to_char }.join("")
-      if spaces_string.include?(winning_sequence)
+      # row is an array of BoardSpace objects
+      if spaces_string.include?(winning_sequence(player))
         victory = true
         break
       else
@@ -101,7 +99,49 @@ class GameBoard
     victory
   end
 
-  def game_winner?
+  def winner_vertical?(player)
+    victory = false
 
+    columns_as_rows_array = []
+
+    col_index = 0
+    while col_index < @board.size
+      @board.to_enum.with_index.reverse_each do |row, row_index|
+        columns_as_rows_array << @board[row_index][col_index]
+      end
+      col_index += 1
+    end
+
+    spaces_string = ""
+    columns_as_rows_array.each do |space|
+      spaces_string += "#{space.to_char}"
+      if spaces_string.include?(winning_sequence(player))
+        victory = true
+        break
+      else
+        victory = false
+      end
+    end
+    @stop_play = victory
+  end
+
+  def winning_sequence(player)
+    winning_sequence = ""
+
+    4.times do
+      winning_sequence += player.piece
+    end
+
+    winning_sequence
+  end
+
+  def game_winner?(player)
+    @stop_play = false
+    if winner_horizontal?(player) || winner_vertical?(player)
+       @stop_play = true
+    else
+      @stop_play = false
+    end
+    @stop_play
   end
 end
