@@ -1,1 +1,3 @@
 .DS_Store
+lib/game_turn.rb
+spec/game_turn_spec.rb
