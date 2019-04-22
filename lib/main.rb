@@ -23,13 +23,21 @@ puts "\n"
 puts board.print
 puts "\n"
 
+player_one = Player.new(name_one, "X")
+player_two = Player.new(name_two, "O")
 
-while board.stop_play == false
-  puts "Player 1, in which column would you like to place your game piece?"
+players = [player_one, player_two].shuffle
+turn_index = 0
+puts "#{players[turn_index].name} won the coin toss!"
+
+while board.empty_spaces? && board.stop_play == false
+  current_player = players[turn_index]
+  puts "#{current_player.name}, in which column would you like to place your game piece?"
   puts "Please specifiy a column letter:"
   print "> "
-  p1_choice = gets.chomp
-  board.add_turn(player_one, p1_choice)
+  choice = gets.chomp
+  board.add_turn(current_player, choice)
   puts board.print
   puts "\n"
+  turn_index = turn_index == 0 ? 1 : 0
 end
