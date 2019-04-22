@@ -38,13 +38,11 @@ class GameBoard
       puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
       puts "\n"
     end
+    winner_horizontal?(player)
   end
 
   def column_full?(column)
     !@board.map { |row| row[column] }.any? { |space| space.to_char == "-"}
-    # columns = @board.map { |row| row[column] }
-    # result = !columns.any? { |space| space.to_char == "-"}
-    # result
   end
 
   def print
@@ -80,7 +78,26 @@ class GameBoard
     return false
   end
 
-  def winner?
-    false
+  def winner_horizontal?(player)
+    victory = false
+    winning_sequence = ""
+    4.times do
+      winning_sequence += player.piece
+    end
+
+    @board.reverse_each do |row|
+      spaces_string = row.map { |space| space.to_char }.join("")
+      if spaces_string.include?(winning_sequence)
+        victory = true
+        break
+      else
+        victory = false
+      end
+    end
+    victory
+  end
+
+  def game_winner?
+
   end
 end

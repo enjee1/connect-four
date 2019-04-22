@@ -23,7 +23,7 @@ puts "\n"
 puts board.print
 puts "\n"
 
-while board.winner? == false
+while board.game_winner? == false
   puts "Player 1, in which column would you like to place your game piece?"
   puts "Please specifiy a column letter: "
   print "> "
