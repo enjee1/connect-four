@@ -21,12 +21,12 @@ class GameBoard
   end
 
   def add_turn(player, col_choice)
-    column_index = COLUMN_NAMES.find_index(col_choice.upcase)
+    col_index = column_letter_index(col_choice)
 
-    if !column_full?(column_index)
+    if !column_full?(col_index)
       @board.reverse.each do |row|
-        if row[column_index].to_char == "-"
-          row[column_index].player = player
+        if row[col_index].to_char == "-"
+          row[col_index].player = player
           break
         end
       end
@@ -76,6 +76,10 @@ class GameBoard
       end
     end
     return false
+  end
+
+  def column_letter_index(column_letter)
+    COLUMN_NAMES.find_index(column_letter.upcase)
   end
 
   def winner_horizontal?(player)
