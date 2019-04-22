@@ -55,4 +55,30 @@ describe GameBoard do
     puts "\n" + board.print
     expect(board.empty_spaces?).to eq(false)
   end
+
+  describe "#winner" do
+    context "horizontal win" do
+      it it "returns true if there are four consecutive game pieces of the same
+        player in a row" do
+        board.add_turn(x_player, 'A')
+        board.add_turn(o_player, 'B')
+        board.add_turn(x_player, 'C')
+        board.add_turn(o_player, 'D')
+        board.add_turn(x_player, 'A')
+        board.add_turn(o_player, 'E')
+        board.add_turn(x_player, 'A')
+        board.add_turn(o_player, 'F')
+        board.add_turn(x_player, 'B')
+        board.add_turn(o_player, 'G')
+        expect(board.winner_horizontal?(o_player)).to eq(true)
+        puts board.print
+      end
+    end
+
+    context "vertical win" do
+      it "returns true if there are four consecutive game pieces of the same
+        player in a column" do
+      end
+    end
+  end
 end
